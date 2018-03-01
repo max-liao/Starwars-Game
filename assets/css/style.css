@@ -1,0 +1,10 @@
+    /*
+			NOTE: Commenting is a bit different in CSS. 
+		  They start with forward-slash + asterisk 
+		  and end with back-slash + asterisk.
+		  */
+
+    h6 {
+      background-color: black;
+      padding:10px;
+    }

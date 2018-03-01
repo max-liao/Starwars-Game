@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Star Wars</title>
+  
+  <!-- Reset css for browser -->
+  <link rel="stylesheet" href="assets\css\reset.css">
+
+  <!-- Bootstrap and jQuery -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+  <!-- Local css -->
+  <link href="assets\css\style.css" rel="stylesheet" type="text/css">
+
+  <!-- Font Awesome -->
+  <script defer src="https://use.fontawesome.com/releases/v5.0.7/js/all.js"></script>
+
+</head>
+
+<body>
+  <p style="font-size:46px; text-align:center;"> Star Wars</p>
+  <br>
+  
+  <div class = "container" style="text-align:center;">
+      <div class="jumbotron jumbotron-fluid" style="height: 10%;padding:auto; margin:auto">
+        <p id = "scoredisplay"></p>
+      </div>
+  </div>
+
+  <div class = "container" style="text-align:center;margin-top:2%;">
+    <a href="#" class="btn btn-info btn-lg" id = "heartbtn" style="background-color:crimson;border-color:crimson;color:whitesmoke">
+      <span class="glyphicon glyphicon-heart"></span> Heart</a>
+    
+    <a href="#" class="btn btn-info btn-lg" id = "clubbtn" style="background-color:green;border-color:green;color:white">
+      <span class="glyphicon glyphicon-tree-deciduous"></span> Club</a>
+
+    <a href="#" class="btn btn-info btn-lg" id = "spadebtn" style="background-color:black;border-color:black;color:white">
+      <span class="glyphicon glyphicon-ice-lolly"></span> Spade</a>
+      <!-- <i class="far fa-spade"></i>Spade</a> -->
+
+    <a href="#" class="btn btn-info btn-lg" id = "diamondbtn" style="background-color:blue;border-color:blue;color:white">
+      <i class="far fa-gem"></i> Diamond</a>
+  </div>
+
+  <div class = "container" style="text-align:center;margin-top:2%;">
+      <div class="jumbotron jumbotron-fluid" style="height: 10%;padding:auto; margin:auto">
+        <p id = "userscoredisplay"></p>
+      </div>
+  </div>
+
+  <p style="margin:1%" id = "gameStatus"></p>
+  <script type="text/javascript" src = "assets/javascript/game.js"></script>
+
+</body>
+</html>
