@@ -1,10 +1,59 @@
     /*
 			NOTE: Commenting is a bit different in CSS. 
 		  They start with forward-slash + asterisk 
-		  and end with back-slash + asterisk.
+		  and end with back-slash + asterisk.ba
 		  */
 
-    h6 {
-      background-color: black;
+    h1 {
+      color: yellow;
+      font-weight: 900;
       padding:10px;
+    }
+
+    h2 {
+      color: whitesmoke;
+      padding:10px;
+      font-size: 28px;
+    }
+
+    h3 {
+      color: lightgray;
+      padding:10px;
+    }
+    
+
+    body{
+      background-color: black;
+    }
+
+    .battleimg{
+      border: 5px;
+      border-color: blue;
+    }
+
+    /* #choosebox{ */
+     /* display: inline-block; */
+     /* text-align:center; */
+     /* margin-left:auto; */
+     /* margin-right:auto; */
+     /* margin-bottom:2%;  */
+    /* } */
+
+
+    #Jarjarbtn{
+      background-color:crimson;
+      border-color:crimson;
+      color:whitesmoke;
+    }
+    
+    #Wattobtn{
+      background-color:green;
+      border-color:green;
+      color:white;
+    }
+
+    #Ewokbtn{
+      background-color:purple;
+      border-color:purple;
+      color:white;
     }

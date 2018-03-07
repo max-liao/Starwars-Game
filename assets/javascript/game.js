@@ -1,91 +1,230 @@
-// Creates an array that lists out all of the options (Rock, Paper, or Scissors).
-alert("Press any key to get started!");
+//Character initialization
 
+function SetCharacter(obj) {
+  $.each( obj, function( key, value ) {
+       var temp = {};
+       temp.attr(key,value);
+       player = temp;
+  });
+}
+
+
+var Jarjar = {
+  name: "Jar Jar Binks",
+  hp: 100,
+  initialap: 4,
+  ap: 1,
+  cap: 1,
+  src: "assets/images/Jar.gif",
+  chosen: false,
+}
+
+var Watto = {
+  name: "Watto",
+  hp: 100,
+  initialap: 3,
+  ap: 3,
+  cap: 2,
+  src: "assets/images/watto.jpg",
+  chosen: false,
+}
+
+var Ewok = {
+  name: "Ewok",
+  hp: 100,
+  initialap: 2,
+  ap: 2,
+  cap: 10,
+  src: "assets/images/ewok.jpg",
+  chosen: false,
+}
+
+var player = {
+}
+
+var enemy = {
+}
+
+var empty = {
+  name: "",
+  hp: 0,
+  ap: 0,
+  cap: 0,  
+  src: "",
+  initialap: 0,
+  chosen: false,
+}
+
+// var obj = {
+//   "flammable": "inflammable",
+//   "duh": "no duh",
+//   "aliases": [
+//     "Greyhame",
+//     "Stormcrow",
+//     "Mithrandir",
+//     "Gandalf the Grey",
+//     "Gandalf the White"
+//   ],
+// };
+// $.each( obj, function( hi, value ) {
+//   alert( hi + ": " + value );
+// });
+
+//Game Object
 var game = {
 
     //variables
-    initial: 0, 
-    userscore: 0,
-    name: "hangman",
+    name: "StarWarsGame",
     creator: "Max",
-    heartval: 0,
-    spadeval: 0,
-    clubval: 0,
-    diamondval: 0,
+    playerpicked: false,
+    battlemode: false,
     
     //functions
-    hellow : function(){
-      console.log("Hello World");
-    },
-
-    buttons: function(){
-      var btnvalue = Math.floor(Math.random()*9 +1);
-      return btnvalue;
-    },
-    
     start: function(){
-      var initialnum = Math.floor(Math.random()*100);
-      game.userscore = 0;
-      console.log("Creating initial random numbers");
-      console.log("Player must make a score of " + initialnum);
-      game.heartval = game.buttons();
-      game.spadeval = game.buttons();
-      game.clubval = game.buttons();
-      game.diamondval = game.buttons();
-      $("#userscoredisplay").text("User Score");
-      $("#scoredisplay").text("Player must make a score of " + initialnum);
-      // display = document.getElementById('scoredisplay');
-      // display.lastChild.innerHTML = "new";
-      return initialnum;
+      console.log("New Game");
+      game.playerpicked = false;
+      game.battlemode = false;
+      Watto.chosen = false;
+      Jarjar.chosen = false;
+      Ewok.chosen = false;
+      Watto.hp = 100;
+      Jarjar.hp = 100;
+      Ewok.hp = 100;
+      
+      
+      game.startdisplay();
+      $("#Jarjarbtn").attr('style','display:inline-block;text-align:center;');
+      $("#Wattobtn").attr('style','display:inline-block;text-align:center;');
+      $("#Ewokbtn").attr('style','display:inline-block;text-align:center;');
+      $("#choosebox").attr('style','display:block;text-align:center;');
+      $("#playerpic").attr('src', '');
+      $("#enemypic").attr('src', '');
+
     },
 
-    heart: function(){
-      game.userscore += game.heartval;
-      console.log("Adding one heart");
-      game.wincheck();
+    startdisplay: function(){
+      player = empty;
+      enemy = empty;
+      $("#userprompt").text("Select your player");
+      $("#playerdisplay").text("Waiting for Player Select");
+      $("#enemydisplay").text("Waiting for Enemy Select");
+      Jarjar.ap = Jarjar.initialap;
+      Watto.ap = Watto.initialap;
+      Ewok.ap = Ewok.initialap;
+      console.log(Jarjar);
+      console.log(Watto);
+      console.log(Ewok);
+      console.log(player);
+      console.log(enemy);
+      console.log(empty);
     },
 
-    spade: function(){
-      game.userscore += game.spadeval;
-      console.log("Adding one spade");
-      game.wincheck();
-    },
-
-    club: function(){
-      game.userscore += game.clubval;
-      console.log("Adding one club");
-      game.wincheck();
-    },
-
-    diamond: function(){
-      game.userscore += game.diamondval;
-      console.log("Adding one diamond");
-      game.wincheck();
-    },
-
-    wincheck: function(){
-      console.log(game.userscore);
-      $("#userscoredisplay").text("Current player score " + game.userscore);
-      if (game.userscore == game.initial)
-      {
-        // console.log("WINNER! Restarting game");
-        alert("WINNER! Restarting game")
-        game.initial = game.start();
+    chooseplayer: function(id){
+      if (game.playerpicked == false){
+        // console.log("Choosing player");
+          switch (id) {
+            case "jarjar":
+              player = new SetCharacter(Jarjar);
+              $("#Jarjarbtn").attr('style','display:none;');
+              Jarjar.chosen = true;
+              break;
+            case "watto":
+              player = Watto;
+              Watto.chosen = true;
+              $("#Wattobtn").attr('style','display:none;');
+              break;
+            case "ewok":
+              player = Ewok;
+              Ewok.chosen = true;
+              $("#Ewokbtn").attr('style','display:none;');
+              break;
+          }
+          $("#playerpic").attr('src', player.src);
+          $("#playerdisplay").text(player.name + " health: " + player.hp);
+          game.playerpicked = true;
+          $("#userprompt").text(player.name + " has been chosen. Now pick your enemy for battle...");
+        } else {
+          switch (id) {
+            case "jarjar":
+              enemy = Jarjar;
+              Jarjar.chosen = true;
+              $("#Jarjarbtn").attr('style','display:none;');
+              $("#choosebox").attr('style','display:none;');
+              break;
+            case "watto":
+              enemy = Watto;
+              Watto.chosen = true;
+              $("#Wattobtn").attr('style','display:none;');
+              $("#choosebox").attr('style','display:none;');
+              break;
+            case "ewok":
+              enemy = Ewok;
+              Ewok.chosen = true;
+              $("#Ewokbtn").attr('style','display:none;');
+              $("#choosebox").attr('style','display:none;');
+              break;
+          }
+          game.battlemode = true;
+          $("#enemypic").attr('src', enemy.src);
+          $("#userprompt").text(enemy.name + " picked as enemy");
+          $("#enemydisplay").text(enemy.name + " health: " + enemy.hp);
+        } 
+      if (game.battlemode== true){
+        game.battle();
       }
-      else if (game.userscore > game.initial)
-      {
-        // console.log("OVERLOAD! Restarting game")
-        alert("OVERLOAD! Restarting game")
-        game.initial = game.start();
-      }
+    },
+
+    battle: function(){
+      $("#userprompt").text("Click on " + enemy.name +  " to attack");
+      $("#enemypic").on("click", function() {    
+        $("#enemydisplay").text(enemy.name + " health: " + enemy.hp);
+        $("#playerdisplay").text(player.name + " health: " + player.hp);
+        // console.log("Enemy button clicked");
+
+        //If player loses all HP, Restart game
+        if (player.hp <=0) {
+          if (player.ap != 0){
+            alert(player.name + " died! Restarting game");
+            game.start();
+            console.log(Jarjar);
+          }
+        } else if (enemy.hp <= 0){
+        //If enemy dies, check if any enemies left
+          $("#enemydisplay").text("ENEMY DIED");
+          game.battlemode = false;
+          if ((Jarjar.chosen && Watto.chosen && Ewok.chosen) == true){
+            //If no enemies exist win game, Restart
+            alert("Winner! Restarting game");
+            game.start();
+            
+          } else {
+            //If enemy still exists select next enemy
+            $("#userprompt").text("Enemy has perished. Select Next Challenger");
+            $("#choosebox").attr('style','display:block;text-align:center;');
+          }
+        } else { 
+          //If player and enemy still have health, attack/counterattack
+          enemy.hp -= player.ap;
+          player.ap += player.initialap;
+          player.hp -= enemy.cap; 
+        }
+      })
+
     }
+
 }
 
 // Initialize game
-game.initial = game.start();
+game.start(); 
 
-// Event Listener
-document.getElementById("heartbtn").addEventListener("click", game.heart);
-document.getElementById("spadebtn").addEventListener("click", game.spade);
-document.getElementById("clubbtn").addEventListener("click", game.club);
-document.getElementById("diamondbtn").addEventListener("click", game.diamond);
+//add to first click event
+$(".btn-info").on("click", function() {
+  var id = $(this).attr("id");
+  var value = $(this).attr("value");
+  game.chooseplayer(value);
+});
+
+$("#playerpic").on("click", function() {
+  console.log("Player Attack Power");
+  console.log(player.ap);
+})

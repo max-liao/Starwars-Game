@@ -22,33 +22,36 @@
 </head>
 
 <body>
-  <p style="font-size:46px; text-align:center;"> Star Wars</p>
+  <h1 style="font-size:55px; text-align:center;"> Star Wars RPG</h1>
   <br>
-  
+
   <div class = "container" style="text-align:center;">
-      <div class="jumbotron jumbotron-fluid" style="height: 10%;padding:auto; margin:auto">
-        <p id = "scoredisplay"></p>
-      </div>
+      <h1 id = "userprompt" style="color:aqua">Game Starting...</h1>
+    </div>
+  
+  <div class = "container" style="text-align:center;" id = "choosebox">
+    <h2>Character Selection</h2>
+    <a href="#" class="btn btn-info" id = "Jarjarbtn" value = "jarjar">
+      <span> <img src ="assets/images/Jar.gif" style = "width:150px"></span> JarJar </a>
+    <a  href="#" class="btn btn-info" id = "Wattobtn" value = "watto">
+      <span><img src ="assets/images/watto.jpg" style = "width:150px"></span> Watto </a>
+    <a href="#" class="btn btn-info" id = "Ewokbtn" value = "ewok">
+      <span><img src ="assets/images/ewok.jpg" style = "width:150px"></span> Ewok </a>
+  </div>
+
+  <div class = "container" style="text-align:center;">
+    <h3>Player</h3>
+    <div class ="jumbotron jumbotron-fluid" style="height:5%;padding:auto; margin:auto;font-size:25px;">
+      <p id = "playerdisplay"></p><br>
+      <a><img id = "playerpic" class ="battleimg" src = "" style = "width:150px"></a>
+    </div>
   </div>
 
   <div class = "container" style="text-align:center;margin-top:2%;">
-    <a href="#" class="btn btn-info btn-lg" id = "heartbtn" style="background-color:crimson;border-color:crimson;color:whitesmoke">
-      <span class="glyphicon glyphicon-heart"></span> Heart</a>
-    
-    <a href="#" class="btn btn-info btn-lg" id = "clubbtn" style="background-color:green;border-color:green;color:white">
-      <span class="glyphicon glyphicon-tree-deciduous"></span> Club</a>
-
-    <a href="#" class="btn btn-info btn-lg" id = "spadebtn" style="background-color:black;border-color:black;color:white">
-      <span class="glyphicon glyphicon-ice-lolly"></span> Spade</a>
-      <!-- <i class="far fa-spade"></i>Spade</a> -->
-
-    <a href="#" class="btn btn-info btn-lg" id = "diamondbtn" style="background-color:blue;border-color:blue;color:white">
-      <i class="far fa-gem"></i> Diamond</a>
-  </div>
-
-  <div class = "container" style="text-align:center;margin-top:2%;">
-      <div class="jumbotron jumbotron-fluid" style="height: 10%;padding:auto; margin:auto">
-        <p id = "userscoredisplay"></p>
+    <h3>Enemy</h3>
+      <div class="jumbotron jumbotron-fluid" style="height:5%;padding:auto; margin:auto;font-size:25px;">
+        <p id = "enemydisplay"></p><br>
+        <a><img id = "enemypic" class ="battleimg" src = "" style = "width:150px" ></a>
       </div>
   </div>
 
