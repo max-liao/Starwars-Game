@@ -8,67 +8,97 @@ function SetCharacter(obj) {
   });
 }
 
-
-var Jarjar = {
-  name: "Jar Jar Binks",
-  hp: 100,
-  initialap: 4,
-  ap: 1,
-  cap: 1,
-  src: "assets/images/Jar.gif",
-  chosen: false,
+function Jarjar(name,hp,ap,cap,src){
+  this.name = "Jar Jar Binks";
+  this.hp = 100;
+  this.ap = 1;
+  this.cap = 1;
+  this.initialap = 1;
+  this.src = "assets/images/Jar.gif";
 }
 
-var Watto = {
-  name: "Watto",
-  hp: 100,
-  initialap: 3,
-  ap: 3,
-  cap: 2,
-  src: "assets/images/watto.jpg",
-  chosen: false,
+function Watto(name,hp,ap,cap,src){
+  this.name = "Watto";
+  this.hp = 100;
+  this.initialap = 2;
+  this.ap = 2;
+  this.cap =  2;
+  this.src = "assets/images/watto.jpg";
 }
 
-var Ewok = {
-  name: "Ewok",
-  hp: 100,
-  initialap: 2,
-  ap: 2,
-  cap: 10,
-  src: "assets/images/ewok.jpg",
-  chosen: false,
+function Ewok(name,hp,ap,cap,src){
+  this.name = "Ewok";
+  this.hp = 100;
+  this.initialap = 3;
+  this.ap = 3;
+  this.cap =  3;
+  this.src = "assets/images/ewok.jpg";
 }
+
+function empty(name,hp,ap,cap,src){
+  this.name = "";
+  this.hp = 100;
+  this.ap = 0;
+  this.cap =  0;
+  this.src = "";
+  this.initialap = 0;
+}
+// var Jarjar = {
+//   name: "Jar Jar Binks",
+//   hp: 100,
+//   initialap: 1,
+//   ap: 1,
+//   cap: 1,
+//   src: "assets/images/Jar.gif",
+//   chosen: false,
+// }
+
+// var Watto = {
+//   name: "Watto",
+//   hp: 100,
+//   initialap: 2,
+//   ap: 2,
+//   cap: 2,
+//   src: "assets/images/watto.jpg",
+//   chosen: false,
+// }
+
+
+// var Ewok = {
+//   name: "Ewok",
+//   hp: 100,
+//   initialap: 3,
+//   ap: 3,
+//   cap: 3,
+//   src: "assets/images/ewok.jpg",
+//   chosen: false,
+// }
+
+// function player(name,hp,ap,cap,src){
+//   this.name = name;
+//   this.hp = hp;
+//   this.ap = ap;
+//   this.cap = cap;
+//   this.src = src;
+// }
+
 
 var player = {
 }
 
+
 var enemy = {
 }
 
-var empty = {
-  name: "",
-  hp: 0,
-  ap: 0,
-  cap: 0,  
-  src: "",
-  initialap: 0,
-  chosen: false,
-}
-
-// var obj = {
-//   "flammable": "inflammable",
-//   "duh": "no duh",
-//   "aliases": [
-//     "Greyhame",
-//     "Stormcrow",
-//     "Mithrandir",
-//     "Gandalf the Grey",
-//     "Gandalf the White"
-//   ],
-// };
-// $.each( obj, function( hi, value ) {
-//   alert( hi + ": " + value );
-// });
+// var empty = {
+//   name: "",
+//   hp: 100,
+//   ap: 0,
+//   cap: 0,  
+//   src: "",
+//   initialap: 0,
+//   chosen: false,
+// }
 
 //Game Object
 var game = {
@@ -78,15 +108,18 @@ var game = {
     creator: "Max",
     playerpicked: false,
     battlemode: false,
-    
+    Jarjarchosen: false,
+    Wattochosen: false,
+    Ewokchosen: false,
+
     //functions
     start: function(){
       console.log("New Game");
       game.playerpicked = false;
       game.battlemode = false;
-      Watto.chosen = false;
-      Jarjar.chosen = false;
-      Ewok.chosen = false;
+      game.Wattochosen = false;
+      game.Jarjarchosen = false;
+      game.Ewokchosen = false;
       Watto.hp = 100;
       Jarjar.hp = 100;
       Ewok.hp = 100;
@@ -103,20 +136,21 @@ var game = {
     },
 
     startdisplay: function(){
-      player = empty;
-      enemy = empty;
+      player = new empty;
+      enemy = new empty;
       $("#userprompt").text("Select your player");
       $("#playerdisplay").text("Waiting for Player Select");
       $("#enemydisplay").text("Waiting for Enemy Select");
-      Jarjar.ap = Jarjar.initialap;
-      Watto.ap = Watto.initialap;
-      Ewok.ap = Ewok.initialap;
-      console.log(Jarjar);
-      console.log(Watto);
-      console.log(Ewok);
-      console.log(player);
-      console.log(enemy);
-      console.log(empty);
+      // Jarjar.ap = Jarjar.initialap;
+      // Watto.ap = Watto.initialap;
+      // Ewok.ap = Ewok.initialap;
+      // player.ap = 
+      // console.log(Jarjar);
+      // console.log(Watto);
+      // console.log(Ewok);
+      // console.log(player);
+      // console.log(enemy);
+      // console.log(empty);
     },
 
     chooseplayer: function(id){
@@ -124,18 +158,18 @@ var game = {
         // console.log("Choosing player");
           switch (id) {
             case "jarjar":
-              player = new SetCharacter(Jarjar);
+              player = new Jarjar;
               $("#Jarjarbtn").attr('style','display:none;');
-              Jarjar.chosen = true;
+              game.Jarjarchosen = true;
               break;
             case "watto":
-              player = Watto;
-              Watto.chosen = true;
+              player = new Watto;
+              game.Wattochosen = true;
               $("#Wattobtn").attr('style','display:none;');
               break;
             case "ewok":
-              player = Ewok;
-              Ewok.chosen = true;
+              player = new Ewok;
+              game.Ewokchosen = true;
               $("#Ewokbtn").attr('style','display:none;');
               break;
           }
@@ -146,20 +180,20 @@ var game = {
         } else {
           switch (id) {
             case "jarjar":
-              enemy = Jarjar;
-              Jarjar.chosen = true;
+              enemy = new Jarjar;
+              game.Jarjarchosen = true;
               $("#Jarjarbtn").attr('style','display:none;');
               $("#choosebox").attr('style','display:none;');
               break;
             case "watto":
-              enemy = Watto;
-              Watto.chosen = true;
+              enemy = new Watto;
+              game.Wattochosen = true;
               $("#Wattobtn").attr('style','display:none;');
               $("#choosebox").attr('style','display:none;');
               break;
             case "ewok":
-              enemy = Ewok;
-              Ewok.chosen = true;
+              enemy = new Ewok;
+              game.Ewokchosen = true;
               $("#Ewokbtn").attr('style','display:none;');
               $("#choosebox").attr('style','display:none;');
               break;
@@ -169,9 +203,10 @@ var game = {
           $("#userprompt").text(enemy.name + " picked as enemy");
           $("#enemydisplay").text(enemy.name + " health: " + enemy.hp);
         } 
-      if (game.battlemode== true){
+      if (game.battlemode == true){
         game.battle();
-      }
+      } else {$("#enemypic").empty();}
+      //  else{console.log("Battle mode off");}
     },
 
     battle: function(){
@@ -186,13 +221,13 @@ var game = {
           if (player.ap != 0){
             alert(player.name + " died! Restarting game");
             game.start();
-            console.log(Jarjar);
+            // console.log(Jarjar);
           }
         } else if (enemy.hp <= 0){
         //If enemy dies, check if any enemies left
           $("#enemydisplay").text("ENEMY DIED");
           game.battlemode = false;
-          if ((Jarjar.chosen && Watto.chosen && Ewok.chosen) == true){
+          if ((game.Jarjarchosen && game.Wattochosen && game.Ewokchosen) == true){
             //If no enemies exist win game, Restart
             alert("Winner! Restarting game");
             game.start();
@@ -201,8 +236,10 @@ var game = {
             //If enemy still exists select next enemy
             $("#userprompt").text("Enemy has perished. Select Next Challenger");
             $("#choosebox").attr('style','display:block;text-align:center;');
+            game.battlemode = false;
           }
         } else { 
+          console.log(player);
           //If player and enemy still have health, attack/counterattack
           enemy.hp -= player.ap;
           player.ap += player.initialap;
