@@ -124,7 +124,6 @@ var game = {
       Jarjar.hp = 100;
       Ewok.hp = 100;
       
-      
       game.startdisplay();
       $("#Jarjarbtn").attr('style','display:inline-block;text-align:center;');
       $("#Wattobtn").attr('style','display:inline-block;text-align:center;');
@@ -200,68 +199,74 @@ var game = {
           }
           game.battlemode = true;
           $("#enemypic").attr('src', enemy.src);
-          $("#userprompt").text(enemy.name + " picked as enemy");
+          $("#userprompt").text(enemy.name + " picked as enemy. Click on " + enemy.name +  " portrait to attack");
           $("#enemydisplay").text(enemy.name + " health: " + enemy.hp);
         } 
-      if (game.battlemode == true){
-        game.battle();
-      } else {$("#enemypic").empty();}
+      
       //  else{console.log("Battle mode off");}
     },
 
     battle: function(){
-      $("#userprompt").text("Click on " + enemy.name +  " to attack");
-      $("#enemypic").on("click", function() {    
-        $("#enemydisplay").text(enemy.name + " health: " + enemy.hp);
-        $("#playerdisplay").text(player.name + " health: " + player.hp);
-        // console.log("Enemy button clicked");
+      $("#enemydisplay").text(enemy.name + " health: " + enemy.hp);
+      $("#playerdisplay").text(player.name + " health: " + player.hp);
+      // console.log("Enemy button clicked");
 
-        //If player loses all HP, Restart game
-        if (player.hp <=0) {
-          if (player.ap != 0){
-            alert(player.name + " died! Restarting game");
-            game.start();
-            // console.log(Jarjar);
-          }
-        } else if (enemy.hp <= 0){
-        //If enemy dies, check if any enemies left
-          $("#enemydisplay").text("ENEMY DIED");
-          game.battlemode = false;
-          if ((game.Jarjarchosen && game.Wattochosen && game.Ewokchosen) == true){
-            //If no enemies exist win game, Restart
-            alert("Winner! Restarting game");
-            game.start();
-            
-          } else {
-            //If enemy still exists select next enemy
-            $("#userprompt").text("Enemy has perished. Select Next Challenger");
-            $("#choosebox").attr('style','display:block;text-align:center;');
-            game.battlemode = false;
-          }
-        } else { 
-          console.log(player);
-          //If player and enemy still have health, attack/counterattack
-          enemy.hp -= player.ap;
-          player.ap += player.initialap;
-          player.hp -= enemy.cap; 
+      //If player loses all HP, Restart game
+      if (player.hp <=0) {
+        if (player.ap != 0){
+          alert(player.name + " died! Restarting game");
+          game.start();
+          // console.log(Jarjar);
         }
-      })
-
+      } else if (enemy.hp <= 0){
+      //If enemy dies, check if any enemies left
+        $("#enemydisplay").text("ENEMY DIED");
+        game.battlemode = false;
+        if ((game.Jarjarchosen && game.Wattochosen && game.Ewokchosen) == true){
+          //If no enemies exist win game, Restart
+          alert("Winner! Restarting game");
+          game.start();
+        } else {
+          //If enemy still exists select next enemy
+          $("#userprompt").text("Enemy has perished. Select Next Challenger");
+          $("#choosebox").attr('style','display:block;text-align:center;');
+          game.battlemode = false;
+        }
+      } else { 
+        // debugger;
+        console.log(player);
+        //If player and enemy still have health, attack/counterattack
+        enemy.hp -= player.ap;
+        player.ap += player.initialap;
+        player.hp -= enemy.cap; 
+      }
     }
 
 }
 
+$(document).ready(function() {
 // Initialize game
-game.start(); 
+  game.start(); 
 
-//add to first click event
-$(".btn-info").on("click", function() {
-  var id = $(this).attr("id");
-  var value = $(this).attr("value");
-  game.chooseplayer(value);
+
+  //add to first click event
+  $(".btn-info").on("click", function() {
+    var id = $(this).attr("id");
+    var value = $(this).attr("value");
+    if (game.battlemode == false){
+      game.chooseplayer(value);
+    }
+  });
+  
+  $("#enemypic").on("click", function() {
+    if (game.battlemode == true){
+      game.battle();
+    }
+  });
+
+  $("#playerpic").on("click", function() {
+    console.log("Player Attack Power");
+    console.log(player.ap);
+  })
+  
 });
-
-$("#playerpic").on("click", function() {
-  console.log("Player Attack Power");
-  console.log(player.ap);
-})
