@@ -10,16 +10,16 @@ function SetCharacter(obj) {
 
 function Jarjar(name,hp,ap,cap,src){
   this.name = "Jar Jar Binks";
-  this.hp = 100;
-  this.ap = 1;
+  this.hp = 15;
+  this.ap = 3;
   this.cap = 1;
-  this.initialap = 1;
+  this.initialap = 3;
   this.src = "assets/images/Jar.gif";
 }
 
 function Watto(name,hp,ap,cap,src){
   this.name = "Watto";
-  this.hp = 100;
+  this.hp = 16;
   this.initialap = 2;
   this.ap = 2;
   this.cap =  2;
@@ -28,10 +28,10 @@ function Watto(name,hp,ap,cap,src){
 
 function Ewok(name,hp,ap,cap,src){
   this.name = "Ewok";
-  this.hp = 100;
-  this.initialap = 3;
-  this.ap = 3;
-  this.cap =  3;
+  this.hp = 13;
+  this.initialap = 1;
+  this.ap = 1;
+  this.cap =  4;
   this.src = "assets/images/ewok.jpg";
 }
 
